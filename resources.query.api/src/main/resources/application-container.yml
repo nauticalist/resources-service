@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+logging:
+  pattern:
+    console: "[RESOURCES-QUERY] %clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(---){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+      group:
+        readiness:
+          include: readinessState,db
+        liveness:
+          include: livenessState,ping,diskSpace
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${RESOURCES-MONGO_USER}:${RESOURCES-MONGO_PASSWORD}@${RESOURCES-MONGO_HOST}:${RESOURCES-MONGO_PORT}/?authSource=admin&authMechanism=SCRAM-SHA-1
+      database: ${RESOURCES-MONGO_DATABASE}
+
+axon:
+  data:
+    mongodb:
+      host: ${RESOURCES-AXON_MONGO_HOST}
+      port: ${RESOURCES-AXON_MONGO_PORT}
+      database: ${RESOURCES-AXON_MONGO_DATABASE}
+      username: ${RESOURCES-AXON_MONGO_USER}
+      password: ${RESOURCES-AXON_MONGO_PASSWORD}
+
+spring.security.oauth2:
+  resourceserver:
+    jwt:
+      issuer-uri: ${AUTH_SERVER-ISSUER_URI}
+      jwk-set-uri: ${AUTH_SERVER-JWK_SET_URI}
