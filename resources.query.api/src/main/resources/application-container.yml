@@ -27,6 +27,8 @@ spring:
       database: ${RESOURCES-MONGO_DATABASE}
 
 axon:
+  axonserver:
+    servers: ${RESOURCES-AXON_SERVER_HOST}
   data:
     mongodb:
       host: ${RESOURCES-AXON_MONGO_HOST}

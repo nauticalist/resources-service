@@ -39,7 +39,7 @@ public class VehicleQueryHandlerImpl implements VehicleQueryHandler {
     @Override
     @QueryHandler
     public VehicleResponse getActiveVehicles(FindActiveVehiclesQuery query) {
-        var vehicles = new ArrayList<>(vehicleRepository.findVehiclesByActiveIsTrue());
+        var vehicles = new ArrayList<>(vehicleRepository.findVehiclesByIsActiveIsTrue());
         return new VehicleResponse(vehicles);
     }
 
@@ -64,7 +64,7 @@ public class VehicleQueryHandlerImpl implements VehicleQueryHandler {
     public PagedVehicleRespone getActiveVehiclesByPage(FindActiveVehiclesByPageQuery query) {
         PageRequest pageRequest = PageRequest.of(query.getPage(), query.getSize(), Sort.by("identificationPlate").ascending());
         var totalNumberOfVehicles = vehicleRepository.countByActiveIsTrue();
-        var vehicles = new ArrayList<>(vehicleRepository.findVehiclesByActiveIsTrue(pageRequest));
+        var vehicles = new ArrayList<>(vehicleRepository.findVehiclesByIsActiveIsTrue(pageRequest));
         return new PagedVehicleRespone(pageRequest, vehicles, totalNumberOfVehicles);
     }
 }

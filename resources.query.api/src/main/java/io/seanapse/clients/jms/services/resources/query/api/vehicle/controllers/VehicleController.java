@@ -42,7 +42,7 @@ public class VehicleController {
         }
     }
 
-    @GetMapping("/active")
+    @GetMapping("/status/active")
     @PreAuthorize("hasAnyRole('ROLE_RESOURCES_VEHICLES_USER')")
     public ResponseEntity<VehicleResponse> getActiveVehicles() {
         try {
@@ -119,7 +119,7 @@ public class VehicleController {
         }
     }
 
-    @GetMapping("/active/")
+    @GetMapping("/status/active/")
     @PreAuthorize("hasAnyRole('ROLE_RESOURCES_VEHICLES_USER')")
     public ResponseEntity<PagedVehicleRespone> getActiveVehiclesByPage(@RequestParam(name = "page", defaultValue = "0") int page,
                                                                        @RequestParam(name = "size", defaultValue = "20") int size) {

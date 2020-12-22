@@ -39,7 +39,7 @@ public class VesselQueryHandlerImpl implements VesselQueryHandler {
     @Override
     @QueryHandler
     public VesselResponse getActiveVessels(FindActiveVesselsQuery query) {
-        var vessels = new ArrayList<>(vesselRepository.findVesselsByActiveIsTrue());
+        var vessels = new ArrayList<>(vesselRepository.findVesselsByIsActiveIsTrue());
         return new VesselResponse(vessels);
     }
 
@@ -64,7 +64,7 @@ public class VesselQueryHandlerImpl implements VesselQueryHandler {
     public PagedVesselResponse getActiveVesselsByPage(FindActiveVesselsByPageQuery query) {
         PageRequest pageRequest = PageRequest.of(query.getPage(), query.getSize(), Sort.by("vesselName").ascending());
         var totalNumberOfVessels = vesselRepository.countByActiveIsTrue();
-        var vessels = new ArrayList<>(vesselRepository.findVesselsByActiveIsTrue(pageRequest));
+        var vessels = new ArrayList<>(vesselRepository.findVesselsByIsActiveIsTrue(pageRequest));
         return new PagedVesselResponse(pageRequest, vessels, totalNumberOfVessels);
     }
 }

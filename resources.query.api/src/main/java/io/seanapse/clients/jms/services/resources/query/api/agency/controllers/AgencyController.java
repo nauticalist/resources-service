@@ -42,7 +42,7 @@ public class AgencyController {
         }
     }
 
-    @GetMapping("/active")
+    @GetMapping("/status/active")
     @PreAuthorize("hasAnyRole('ROLE_RESOURCES_AGENCIES_USER')")
     public ResponseEntity<AgencyResponse> getAllActiveAgencies() {
         try {
@@ -55,7 +55,7 @@ public class AgencyController {
 
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
-            var safeErrorMessage = "Failed to comlete get all active agencies request";
+            var safeErrorMessage = "Failed to complete get all active agencies request";
             log.error(e.toString());
             return new ResponseEntity<>(new AgencyResponse(safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -74,7 +74,7 @@ public class AgencyController {
 
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
-            var safeErrorMessage = "Failed to comlete get agency by id request";
+            var safeErrorMessage = "Failed to complete get agency by id request";
             log.error(e.toString());
             return new ResponseEntity<>(new AgencyResponse(safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -119,7 +119,7 @@ public class AgencyController {
         }
     }
 
-    @GetMapping(path = "/active/")
+    @GetMapping(path = "/status/active/")
     @PreAuthorize("hasAnyRole('ROLE_RESOURCES_AGENCIES_USER')")
     public ResponseEntity<PagedAgencyResponse> getActiveAgenciesByPage(@RequestParam(name = "page", defaultValue = "0") int page,
                                                                        @RequestParam(name = "size", defaultValue = "20") int size) {

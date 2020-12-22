@@ -16,9 +16,9 @@ public interface VehicleRepository extends MongoRepository<Vehicle, String> {
     @Query(value = "{'$or': [{'identificationPlate': {$regex: '?0', $options: 'i'}}, {'year': {$regex: '?0', $options: 'i'}}, {'make': {$regex: '?0', $options: 'i'}}, {'model': {$regex: '?0', $options: 'i'}}, {'color': {$regex: '?0', $options: 'i'}}]}")
     List<Vehicle> findByFilterRegex(String filter);
 
-    List<Vehicle> findVehiclesByActiveIsTrue();
+    List<Vehicle> findVehiclesByIsActiveIsTrue();
 
-    List<Vehicle> findVehiclesByActiveIsTrue(Pageable pageable);
+    List<Vehicle> findVehiclesByIsActiveIsTrue(Pageable pageable);
 
     long countByActiveIsTrue();
 }

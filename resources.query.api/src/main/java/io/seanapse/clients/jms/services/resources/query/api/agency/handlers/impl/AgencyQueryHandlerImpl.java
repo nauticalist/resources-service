@@ -37,8 +37,9 @@ public class AgencyQueryHandlerImpl implements AgencyQueryHandler {
     }
 
     @Override
+    @QueryHandler
     public AgencyResponse getAllActiveAgencies(FindAllActiveAgenciesQuery query) {
-        var agencies = new ArrayList<>(agencyRepository.findAgenciesByActiveIsTrue());
+        var agencies = new ArrayList<>(agencyRepository.findAgenciesByIsActiveIsTrue());
         return new AgencyResponse(agencies);
     }
 
@@ -59,10 +60,11 @@ public class AgencyQueryHandlerImpl implements AgencyQueryHandler {
     }
 
     @Override
+    @QueryHandler
     public PagedAgencyResponse getActiveAgenciesByPage(FindActiveAgenciesByPageQuery query) {
         PageRequest pageRequest = PageRequest.of(query.getPage(), query.getSize(), Sort.by("agencyName").ascending());
         var totalNumberOfAgencies = agencyRepository.countByActiveIsTrue();
-        var agencies = new ArrayList<>(agencyRepository.findAgenciesByActiveIsTrue(pageRequest));
+        var agencies = new ArrayList<>(agencyRepository.findAgenciesByIsActiveIsTrue(pageRequest));
         return new PagedAgencyResponse(pageRequest, agencies, totalNumberOfAgencies);
     }
 }

@@ -42,7 +42,7 @@ public class VesselController {
         }
     }
 
-    @GetMapping("/active")
+    @GetMapping("/status/active")
     @PreAuthorize("hasAnyRole('ROLE_RESOURCES_VESSELS_USER')")
     public ResponseEntity<VesselResponse> getActiveVessels() {
         try {
@@ -119,7 +119,7 @@ public class VesselController {
         }
     }
 
-    @GetMapping("/active/")
+    @GetMapping("/status/active/")
     @PreAuthorize("hasAnyRole('ROLE_RESOURCES_VESSELS_USER')")
     public ResponseEntity<PagedVesselResponse> getActiveVesselsByPage(@RequestParam(name = "page", defaultValue = "0") int page,
                                                                       @RequestParam(name = "size", defaultValue = "20") int size) {

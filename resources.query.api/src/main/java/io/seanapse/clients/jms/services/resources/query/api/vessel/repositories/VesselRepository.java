@@ -16,9 +16,9 @@ public interface VesselRepository extends MongoRepository<Vessel, String> {
     @Query(value = "{'$or': [{'vesselName': {$regex: '?0', $options: 'i'}}, {'vesselType': {$regex: '?0', $options: 'i'}}, {'flag': {$regex: '?0', $options: 'i'}}, {'builtYear': {$regex: '?0', $options: 'i'}}, {'grossTonnage': {$regex: '?0', $options: 'i'}}, {'imoNumber': {$regex: '?0', $options: 'i'}}]}")
     List<Vessel> findByFilterRegex(String filter);
 
-    List<Vessel> findVesselsByActiveIsTrue();
+    List<Vessel> findVesselsByIsActiveIsTrue();
 
-    List<Vessel> findVesselsByActiveIsTrue(final Pageable pageable);
+    List<Vessel> findVesselsByIsActiveIsTrue(final Pageable pageable);
 
     long countByActiveIsTrue();
 }

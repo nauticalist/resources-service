@@ -16,9 +16,9 @@ public interface AgencyRepository extends MongoRepository<Agency, String> {
     @Query("{ id: { $exists: true }}")
     List<Agency> findAgencyByPage(final Pageable page);
 
-    List<Agency> findAgenciesByActiveIsTrue(final Pageable page);
+    List<Agency> findAgenciesByIsActiveIsTrue(final Pageable page);
 
-    List<Agency> findAgenciesByActiveIsTrue();
+    List<Agency> findAgenciesByIsActiveIsTrue();
 
     long countByActiveIsTrue();
 }
