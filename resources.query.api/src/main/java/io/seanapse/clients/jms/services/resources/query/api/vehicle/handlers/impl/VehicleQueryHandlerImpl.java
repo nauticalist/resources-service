@@ -63,7 +63,7 @@ public class VehicleQueryHandlerImpl implements VehicleQueryHandler {
     @QueryHandler
     public PagedVehicleRespone getActiveVehiclesByPage(FindActiveVehiclesByPageQuery query) {
         PageRequest pageRequest = PageRequest.of(query.getPage(), query.getSize(), Sort.by("identificationPlate").ascending());
-        var totalNumberOfVehicles = vehicleRepository.countByActiveIsTrue();
+        var totalNumberOfVehicles = vehicleRepository.countByIsActiveIsTrue();
         var vehicles = new ArrayList<>(vehicleRepository.findVehiclesByIsActiveIsTrue(pageRequest));
         return new PagedVehicleRespone(pageRequest, vehicles, totalNumberOfVehicles);
     }

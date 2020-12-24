@@ -49,6 +49,8 @@ public class CustomAggregate {
         var updatedCustom = command.getCustom();
         updatedCustom.setId(command.getId());
         updatedCustom.setModifiedAt(new Date());
+        updatedCustom.setCreatedAt(this.custom.getCreatedAt());
+        updatedCustom.setCreatedBy(this.custom.getCreatedBy());
 
         var event = CustomUpdatedEvent.builder()
                 .id(UUID.randomUUID().toString())

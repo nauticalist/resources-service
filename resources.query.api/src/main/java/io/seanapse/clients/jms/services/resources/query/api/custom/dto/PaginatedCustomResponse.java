@@ -36,7 +36,8 @@ public class PaginatedCustomResponse extends BaseResponse {
 
     @JsonProperty("totalPages")
     public int getTotalPages() {
-        return Math.toIntExact(totalNumberOfElements/pageable.getPageSize()+1);
+        double totalNumberOfPages = Math.floor(((double) totalNumberOfElements + (double) pageable.getPageSize() - 1) / (double) pageable.getPageSize());
+        return (int) totalNumberOfPages;
     }
 
     @JsonProperty("currentPage")

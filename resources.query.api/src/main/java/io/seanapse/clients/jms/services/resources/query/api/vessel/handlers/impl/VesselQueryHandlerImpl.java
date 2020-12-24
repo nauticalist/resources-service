@@ -63,7 +63,7 @@ public class VesselQueryHandlerImpl implements VesselQueryHandler {
     @QueryHandler
     public PagedVesselResponse getActiveVesselsByPage(FindActiveVesselsByPageQuery query) {
         PageRequest pageRequest = PageRequest.of(query.getPage(), query.getSize(), Sort.by("vesselName").ascending());
-        var totalNumberOfVessels = vesselRepository.countByActiveIsTrue();
+        var totalNumberOfVessels = vesselRepository.countByIsActiveIsTrue();
         var vessels = new ArrayList<>(vesselRepository.findVesselsByIsActiveIsTrue(pageRequest));
         return new PagedVesselResponse(pageRequest, vessels, totalNumberOfVessels);
     }

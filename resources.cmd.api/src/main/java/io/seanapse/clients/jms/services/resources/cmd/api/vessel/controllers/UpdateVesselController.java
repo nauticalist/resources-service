@@ -28,7 +28,7 @@ public class UpdateVesselController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ROLE_RESOURCES_VESSELS_MANAGER')")
-    public ResponseEntity<BaseResponse> updateVessel(@PathVariable(value = "{id}") String id,
+    public ResponseEntity<BaseResponse> updateVessel(@PathVariable(value = "id") String id,
                                                      @Valid @RequestBody UpdateVesselCommand command,
                                                      @AuthenticationPrincipal Jwt principal) {
         String userId = (String) principal.getClaims().get("sub");

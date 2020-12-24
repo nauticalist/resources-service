@@ -4,8 +4,8 @@ import io.seanapse.clients.jms.services.resources.query.api.custom.dto.CustomRes
 import io.seanapse.clients.jms.services.resources.query.api.custom.dto.PaginatedCustomResponse;
 import io.seanapse.clients.jms.services.resources.query.api.custom.queries.FindAllCustomsQuery;
 import io.seanapse.clients.jms.services.resources.query.api.custom.queries.FindCustomByIdQuery;
+import io.seanapse.clients.jms.services.resources.query.api.custom.queries.FindCustomsByPageQuery;
 import io.seanapse.clients.jms.services.resources.query.api.custom.queries.SearchCustomsQuery;
-import io.seanapse.clients.jms.services.resources.query.api.port.queries.FindPortsByPageQuery;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
@@ -89,7 +89,7 @@ public class CustomController {
             @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "size", defaultValue = "20") int size) {
         try {
-            var query = new FindPortsByPageQuery(page, size);
+            var query = new FindCustomsByPageQuery(page, size);
             var response = queryGateway.query(query, ResponseTypes.instanceOf(PaginatedCustomResponse.class)).join();
 
             if (response == null || response.getContent() == null) {

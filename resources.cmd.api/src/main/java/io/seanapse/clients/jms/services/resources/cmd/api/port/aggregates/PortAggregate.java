@@ -51,6 +51,8 @@ public class PortAggregate {
         var updatedPort = command.getPort();
         updatedPort.setId(command.getId());
         updatedPort.setModifiedAt(new Date());
+        updatedPort.setCreatedAt(this.port.getCreatedAt());
+        updatedPort.setCreatedBy(this.port.getCreatedBy());
 
         var event = PortUpdatedEvent.builder()
                 .id(UUID.randomUUID().toString())

@@ -63,7 +63,7 @@ public class AgencyQueryHandlerImpl implements AgencyQueryHandler {
     @QueryHandler
     public PagedAgencyResponse getActiveAgenciesByPage(FindActiveAgenciesByPageQuery query) {
         PageRequest pageRequest = PageRequest.of(query.getPage(), query.getSize(), Sort.by("agencyName").ascending());
-        var totalNumberOfAgencies = agencyRepository.countByActiveIsTrue();
+        var totalNumberOfAgencies = agencyRepository.countByIsActiveIsTrue();
         var agencies = new ArrayList<>(agencyRepository.findAgenciesByIsActiveIsTrue(pageRequest));
         return new PagedAgencyResponse(pageRequest, agencies, totalNumberOfAgencies);
     }

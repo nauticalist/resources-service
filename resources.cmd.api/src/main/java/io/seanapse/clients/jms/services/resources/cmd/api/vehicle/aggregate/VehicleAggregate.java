@@ -50,13 +50,15 @@ public class VehicleAggregate {
 
     @CommandHandler
     public void handle(UpdateVehicleCommand command) {
-        var updatedVessel = command.getVehicle();
-        updatedVessel.setId(command.getId());
-        updatedVessel.setModifiedAt(new Date());
+        var updatedVehicle = command.getVehicle();
+        updatedVehicle.setId(command.getId());
+        updatedVehicle.setModifiedAt(new Date());
+        updatedVehicle.setCreatedAt(this.vehicle.getCreatedAt());
+        updatedVehicle.setCreatedBy(this.vehicle.getCreatedBy());
 
         var event = VehicleUpdatedEvent.builder()
                 .id(UUID.randomUUID().toString())
-                .vehicle(updatedVessel)
+                .vehicle(updatedVehicle)
                 .build();
 
         AggregateLifecycle.apply(event);

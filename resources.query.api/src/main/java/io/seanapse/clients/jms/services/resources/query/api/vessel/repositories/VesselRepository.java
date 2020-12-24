@@ -20,5 +20,5 @@ public interface VesselRepository extends MongoRepository<Vessel, String> {
 
     List<Vessel> findVesselsByIsActiveIsTrue(final Pageable pageable);
 
-    long countByActiveIsTrue();
+    long countByIsActiveIsTrue();
 }

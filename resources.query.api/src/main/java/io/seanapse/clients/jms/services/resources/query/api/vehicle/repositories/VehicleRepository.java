@@ -20,5 +20,5 @@ public interface VehicleRepository extends MongoRepository<Vehicle, String> {
 
     List<Vehicle> findVehiclesByIsActiveIsTrue(Pageable pageable);
 
-    long countByActiveIsTrue();
+    long countByIsActiveIsTrue();
 }

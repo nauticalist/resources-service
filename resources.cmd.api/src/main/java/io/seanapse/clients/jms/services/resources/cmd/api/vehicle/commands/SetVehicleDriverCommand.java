@@ -1,5 +1,6 @@
 package io.seanapse.clients.jms.services.resources.cmd.api.vehicle.commands;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.seanapse.clients.jms.services.resources.core.vehicles.model.Vehicle;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,6 @@ public class SetVehicleDriverCommand {
     @NotNull(message = "You must select a user")
     private String driver;
 
-    @NotNull(message = "invalid content editor")
+    @JsonIgnore
     private String userId;
 }

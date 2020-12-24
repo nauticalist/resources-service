@@ -50,7 +50,8 @@ public class VesselAggregate {
         var updatedVessel = command.getVessel();
         updatedVessel.setId(command.getId());
         updatedVessel.setModifiedAt(new Date());
-
+        updatedVessel.setCreatedAt(this.vessel.getCreatedAt());
+        updatedVessel.setCreatedBy(this.vessel.getCreatedBy());
         var event = VesselUpdatedEvent.builder()
                 .id(UUID.randomUUID().toString())
                 .vessel(updatedVessel)

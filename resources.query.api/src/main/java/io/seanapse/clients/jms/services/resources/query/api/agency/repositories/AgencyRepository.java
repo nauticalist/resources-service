@@ -20,5 +20,5 @@ public interface AgencyRepository extends MongoRepository<Agency, String> {
 
     List<Agency> findAgenciesByIsActiveIsTrue();
 
-    long countByActiveIsTrue();
+    long countByIsActiveIsTrue();
 }
