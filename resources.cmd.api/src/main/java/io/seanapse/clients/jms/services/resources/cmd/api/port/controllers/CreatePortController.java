@@ -43,13 +43,13 @@ public class CreatePortController {
             commandGateway.sendAndWait(command);
 
             return new ResponseEntity<>(
-                    new CreatePortResponse(id, "Successfully created new port"),
+                    new CreatePortResponse("Successfully created new port", id),
                     HttpStatus.CREATED);
         } catch (Exception e) {
             var safeErrorMessage = "Error while processing request to create a new port for id - " + id;
             log.error(e.toString());
             return new ResponseEntity<>(
-                    new CreatePortResponse(id, safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
+                    new CreatePortResponse(safeErrorMessage, id), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

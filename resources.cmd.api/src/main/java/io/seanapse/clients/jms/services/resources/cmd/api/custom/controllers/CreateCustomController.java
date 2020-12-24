@@ -42,12 +42,12 @@ public class CreateCustomController {
 
             commandGateway.sendAndWait(command);
 
-            return new ResponseEntity<>(new CreateCustomResponse(id, "Successfully created new custom"), HttpStatus.CREATED);
+            return new ResponseEntity<>(new CreateCustomResponse("Successfully created new custom", id), HttpStatus.CREATED);
         } catch (Exception e) {
             var safeErrorMessage = "Error while processing request to create a new custom for id = " + id;
             log.error(e.toString());
             return new ResponseEntity<>(
-                    new CreateCustomResponse(id, safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
+                    new CreateCustomResponse(safeErrorMessage, id), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

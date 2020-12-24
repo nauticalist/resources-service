@@ -42,12 +42,12 @@ public class CreateAgencyController {
 
             commandGateway.sendAndWait(command);
 
-            return new ResponseEntity<>(new CreateAgencyResponse(id, "Successfully created new agency"), HttpStatus.CREATED);
+            return new ResponseEntity<>(new CreateAgencyResponse("Successfully created new agency", id), HttpStatus.CREATED);
         } catch (Exception e) {
             var safeErrorMessage = "Error while processing request to create a new agency for id - " + id;
             log.error(e.toString());
 
-            return new ResponseEntity<>(new CreateAgencyResponse(id, safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new CreateAgencyResponse(safeErrorMessage, id), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

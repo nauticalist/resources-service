@@ -42,12 +42,12 @@ public class CreateVehicleController {
 
             commandGateway.sendAndWait(command);
 
-            return new ResponseEntity<>(new CreateVehicleResponse(id, "Successfully created new vehicle"), HttpStatus.CREATED);
+            return new ResponseEntity<>(new CreateVehicleResponse("Successfully created new vehicle", id), HttpStatus.CREATED);
         } catch (Exception e) {
             var errorMessage = "Error while processing request to create a new vehicle for id - " + id;
             log.error(e.toString());
 
-            return new ResponseEntity<>(new CreateVehicleResponse(id, errorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new CreateVehicleResponse(errorMessage, id), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

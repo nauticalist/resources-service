@@ -41,12 +41,12 @@ public class CreateVesselController {
 
             commandGateway.sendAndWait(command);
 
-            return new ResponseEntity<>(new CreateVesselResponse(id, "Successfully created new vessel"), HttpStatus.CREATED);
+            return new ResponseEntity<>(new CreateVesselResponse("Successfully created new vessel", id), HttpStatus.CREATED);
         } catch (Exception e) {
             var errorMessage = "Error while processing request to create a new vessel for id - " + id;
             log.error(e.toString());
 
-            return new ResponseEntity<>(new CreateVesselResponse(id, errorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new CreateVesselResponse(errorMessage, id), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
